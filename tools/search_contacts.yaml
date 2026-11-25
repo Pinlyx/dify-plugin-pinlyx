@@ -1,0 +1,59 @@
+identity:
+  name: search_contacts
+  author: pinlyx
+  label:
+    en_US: Search contacts
+description:
+  human:
+    en_US: Search Pinlyx contacts by free text or exact email.
+  llm: Search CRM contacts. 'query' matches name, username, phone, email, company and external id (case-insensitive substring). Use 'email' for an exact email match. Returns up to 'limit' contacts, newest first, plus nextCursor/hasMore.
+parameters:
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Search text
+  human_description:
+    en_US: Matches name, username, phone, email, company or external ID.
+  llm_description: Free-text search over name, username, phone, email, company and external id.
+  form: llm
+- name: email
+  type: string
+  required: false
+  label:
+    en_US: Email
+  human_description:
+    en_US: Exact email address (case-insensitive).
+  llm_description: Exact email address to look up.
+  form: llm
+- name: external_id
+  type: string
+  required: false
+  label:
+    en_US: External ID
+  human_description:
+    en_US: The contact's ID in your own system.
+  llm_description: Exact external id (the contact's id in the caller's own system).
+  form: llm
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Limit
+  human_description:
+    en_US: Maximum rows to return (1 to 100, default 10).
+  llm_description: Maximum number of rows to return, 1 to 100. Default 10.
+  form: llm
+  default: 10
+- name: after
+  type: number
+  required: false
+  label:
+    en_US: After ID
+  human_description:
+    en_US: Cursor from a previous call (nextCursor) to get the next page.
+  llm_description: The nextCursor value of a previous result, to fetch the next page. Leave empty for the first page.
+  form: llm
+extra:
+  python:
+    source: tools/search_contacts.py

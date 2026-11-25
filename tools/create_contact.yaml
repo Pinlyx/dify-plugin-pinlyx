@@ -1,0 +1,116 @@
+identity:
+  name: create_contact
+  author: pinlyx
+  label:
+    en_US: Create contact
+description:
+  human:
+    en_US: Create a contact in Pinlyx.
+  llm: Create a CRM contact. At least one of name, username, phone, email or external_id is required. Fails with a conflict if the external_id already exists.
+parameters:
+- name: name
+  type: string
+  required: false
+  label:
+    en_US: Name
+  human_description:
+    en_US: Full name.
+  llm_description: Contact full name.
+  form: llm
+- name: username
+  type: string
+  required: false
+  label:
+    en_US: Username
+  human_description:
+    en_US: Telegram or X username, with or without @.
+  llm_description: Telegram or X username.
+  form: llm
+- name: phone
+  type: string
+  required: false
+  label:
+    en_US: Phone
+  human_description:
+    en_US: Phone number (max 20 characters).
+  llm_description: Phone number, at most 20 characters.
+  form: llm
+- name: email
+  type: string
+  required: false
+  label:
+    en_US: Email
+  human_description:
+    en_US: Email address.
+  llm_description: Email address.
+  form: llm
+- name: company
+  type: string
+  required: false
+  label:
+    en_US: Company
+  human_description:
+    en_US: Company name.
+  llm_description: Company name.
+  form: llm
+- name: external_id
+  type: string
+  required: false
+  label:
+    en_US: External ID
+  human_description:
+    en_US: Your own ID for this contact. Must be unique in the workspace.
+  llm_description: Caller's own id for the contact, unique per workspace.
+  form: llm
+- name: notes
+  type: string
+  required: false
+  label:
+    en_US: Notes
+  human_description:
+    en_US: Free-text note (max 500 characters).
+  llm_description: Short note about the contact, at most 500 characters.
+  form: llm
+- name: stage
+  type: select
+  required: false
+  label:
+    en_US: Stage
+  human_description:
+    en_US: Pipeline stage. Leave empty for the workspace default.
+  llm_description: Pipeline stage of the contact.
+  form: llm
+  options:
+  - value: novalue
+    label:
+      en_US: novalue
+  - value: lead
+    label:
+      en_US: lead
+  - value: conversation
+    label:
+      en_US: conversation
+  - value: proposal
+    label:
+      en_US: proposal
+  - value: negotiation
+    label:
+      en_US: negotiation
+  - value: won
+    label:
+      en_US: won
+  - value: lost
+    label:
+      en_US: lost
+- name: tags
+  type: string
+  required: false
+  label:
+    en_US: Tags
+  human_description:
+    en_US: Comma-separated tag names. Missing tags are created.
+  llm_description: Comma-separated tag names, for example 'vip, webinar'. Missing tags are created.
+  form: llm
+extra:
+  python:
+    source: tools/create_contact.py

@@ -1,0 +1,78 @@
+identity:
+  name: list_deals
+  author: pinlyx
+  label:
+    en_US: List deals
+description:
+  human:
+    en_US: List deals, optionally by stage, contact or title.
+  llm: List CRM deals, newest first. Filter by stage, contact id or a title substring. Returns nextCursor/hasMore for paging.
+parameters:
+- name: stage
+  type: select
+  required: false
+  label:
+    en_US: Stage
+  human_description:
+    en_US: Only deals in this stage.
+  llm_description: Only deals in this stage.
+  form: llm
+  options:
+  - value: lead
+    label:
+      en_US: lead
+  - value: qualified
+    label:
+      en_US: qualified
+  - value: proposal
+    label:
+      en_US: proposal
+  - value: negotiation
+    label:
+      en_US: negotiation
+  - value: won
+    label:
+      en_US: won
+  - value: lost
+    label:
+      en_US: lost
+- name: contact_id
+  type: number
+  required: false
+  label:
+    en_US: Contact ID
+  human_description:
+    en_US: Only deals of this contact.
+  llm_description: Only deals linked to this contact id.
+  form: llm
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Title contains
+  human_description:
+    en_US: Substring of the deal title.
+  llm_description: Case-insensitive substring of the deal title.
+  form: llm
+- name: limit
+  type: number
+  required: false
+  label:
+    en_US: Limit
+  human_description:
+    en_US: Maximum rows to return (1 to 100, default 10).
+  llm_description: Maximum number of rows to return, 1 to 100. Default 10.
+  form: llm
+  default: 10
+- name: after
+  type: number
+  required: false
+  label:
+    en_US: After ID
+  human_description:
+    en_US: Cursor from a previous call (nextCursor) to get the next page.
+  llm_description: The nextCursor value of a previous result, to fetch the next page. Leave empty for the first page.
+  form: llm
+extra:
+  python:
+    source: tools/list_deals.py

@@ -1,0 +1,42 @@
+identity:
+  author: pinlyx
+  name: pinlyx
+  label:
+    en_US: Pinlyx
+  description:
+    en_US: Search and update contacts, deals and tasks in your Pinlyx CRM.
+  icon: icon.png
+  tags:
+    - business
+    - productivity
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: API key
+    placeholder:
+      en_US: csk_live_...
+    help:
+      en_US: Create a key in the Pinlyx panel under Settings, API keys. The REST API is part of the Business plan.
+    url: https://pinlyx.com/docs
+  workspace_id:
+    type: text-input
+    required: false
+    label:
+      en_US: Workspace ID (optional)
+    placeholder:
+      en_US: Leave empty to use the key's own workspace
+    help:
+      en_US: Only needed when the key belongs to a member of several workspaces and you want a specific shared workspace. Sent as the X-Workspace-Id header.
+tools:
+  - tools/search_contacts.yaml
+  - tools/get_contact.yaml
+  - tools/create_contact.yaml
+  - tools/update_contact_stage.yaml
+  - tools/list_deals.yaml
+  - tools/create_deal.yaml
+  - tools/create_task.yaml
+extra:
+  python:
+    source: provider/pinlyx.py

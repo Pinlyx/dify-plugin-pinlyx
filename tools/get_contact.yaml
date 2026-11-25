@@ -1,0 +1,22 @@
+identity:
+  name: get_contact
+  author: pinlyx
+  label:
+    en_US: Get contact
+description:
+  human:
+    en_US: Fetch one Pinlyx contact with its tags.
+  llm: Fetch a single CRM contact by its numeric Pinlyx id, including stage, lead score, custom fields and tags.
+parameters:
+- name: contact_id
+  type: number
+  required: true
+  label:
+    en_US: Contact ID
+  human_description:
+    en_US: Numeric Pinlyx contact ID.
+  llm_description: Numeric id of the contact.
+  form: llm
+extra:
+  python:
+    source: tools/get_contact.py

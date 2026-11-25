@@ -1,0 +1,77 @@
+identity:
+  name: create_task
+  author: pinlyx
+  label:
+    en_US: Create task
+description:
+  human:
+    en_US: Create a follow-up task, optionally linked to a contact or deal.
+  llm: Create a CRM task (to-do). Only title is required. Link it to a contact and/or deal by id. Priority is low, medium or high; due_at is ISO 8601.
+parameters:
+- name: title
+  type: string
+  required: true
+  label:
+    en_US: Title
+  human_description:
+    en_US: Task title.
+  llm_description: Task title.
+  form: llm
+- name: description
+  type: string
+  required: false
+  label:
+    en_US: Description
+  human_description:
+    en_US: Task details.
+  llm_description: Longer description of the task.
+  form: llm
+- name: contact_id
+  type: number
+  required: false
+  label:
+    en_US: Contact ID
+  human_description:
+    en_US: Link the task to this contact.
+  llm_description: Numeric id of the related contact.
+  form: llm
+- name: deal_id
+  type: number
+  required: false
+  label:
+    en_US: Deal ID
+  human_description:
+    en_US: Link the task to this deal.
+  llm_description: Numeric id of the related deal.
+  form: llm
+- name: priority
+  type: select
+  required: false
+  label:
+    en_US: Priority
+  human_description:
+    en_US: Task priority (default medium).
+  llm_description: Task priority.
+  form: llm
+  options:
+  - value: low
+    label:
+      en_US: low
+  - value: medium
+    label:
+      en_US: medium
+  - value: high
+    label:
+      en_US: high
+- name: due_at
+  type: string
+  required: false
+  label:
+    en_US: Due date
+  human_description:
+    en_US: ISO 8601 date or datetime, for example 2026-12-01T09:00:00Z.
+  llm_description: Due date in ISO 8601 format.
+  form: llm
+extra:
+  python:
+    source: tools/create_task.py

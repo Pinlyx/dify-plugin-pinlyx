@@ -1,0 +1,53 @@
+identity:
+  name: update_contact_stage
+  author: pinlyx
+  label:
+    en_US: Update contact stage
+description:
+  human:
+    en_US: Move a contact to another pipeline stage.
+  llm: Move a CRM contact along its sales pipeline. Stage is one of novalue, lead, conversation, proposal, negotiation, won, lost.
+parameters:
+- name: contact_id
+  type: number
+  required: true
+  label:
+    en_US: Contact ID
+  human_description:
+    en_US: Numeric Pinlyx contact ID.
+  llm_description: Numeric id of the contact.
+  form: llm
+- name: stage
+  type: select
+  required: true
+  label:
+    en_US: Stage
+  human_description:
+    en_US: New pipeline stage.
+  llm_description: Target pipeline stage.
+  form: llm
+  options:
+  - value: novalue
+    label:
+      en_US: novalue
+  - value: lead
+    label:
+      en_US: lead
+  - value: conversation
+    label:
+      en_US: conversation
+  - value: proposal
+    label:
+      en_US: proposal
+  - value: negotiation
+    label:
+      en_US: negotiation
+  - value: won
+    label:
+      en_US: won
+  - value: lost
+    label:
+      en_US: lost
+extra:
+  python:
+    source: tools/update_contact_stage.py

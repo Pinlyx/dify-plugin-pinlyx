@@ -1,0 +1,98 @@
+identity:
+  name: create_deal
+  author: pinlyx
+  label:
+    en_US: Create deal
+description:
+  human:
+    en_US: Create a deal, optionally linked to a contact.
+  llm: Create a CRM deal. Only title is required. A deal cannot be created as won or lost. Value is a number, currency a 3-letter code such as USD.
+parameters:
+- name: title
+  type: string
+  required: true
+  label:
+    en_US: Title
+  human_description:
+    en_US: Deal title.
+  llm_description: Deal title.
+  form: llm
+- name: contact_id
+  type: number
+  required: false
+  label:
+    en_US: Contact ID
+  human_description:
+    en_US: Link the deal to this contact.
+  llm_description: Numeric id of the contact the deal belongs to.
+  form: llm
+- name: value
+  type: number
+  required: false
+  label:
+    en_US: Value
+  human_description:
+    en_US: Deal amount.
+  llm_description: Deal amount as a number.
+  form: llm
+- name: currency
+  type: string
+  required: false
+  label:
+    en_US: Currency
+  human_description:
+    en_US: 3-letter currency code, for example USD.
+  llm_description: Three-letter currency code, for example USD or EUR.
+  form: llm
+- name: stage
+  type: select
+  required: false
+  label:
+    en_US: Stage
+  human_description:
+    en_US: Starting stage (default lead).
+  llm_description: Starting stage of the deal.
+  form: llm
+  options:
+  - value: lead
+    label:
+      en_US: lead
+  - value: qualified
+    label:
+      en_US: qualified
+  - value: proposal
+    label:
+      en_US: proposal
+  - value: negotiation
+    label:
+      en_US: negotiation
+- name: probability
+  type: number
+  required: false
+  label:
+    en_US: Probability
+  human_description:
+    en_US: Win probability, 0 to 100.
+  llm_description: Win probability from 0 to 100.
+  form: llm
+- name: expected_close_at
+  type: string
+  required: false
+  label:
+    en_US: Expected close date
+  human_description:
+    en_US: ISO 8601 date or datetime, for example 2026-12-31.
+  llm_description: Expected close date in ISO 8601 format.
+  form: llm
+- name: notes
+  type: string
+  required: false
+  label:
+    en_US: Notes
+  human_description:
+    en_US: Free-text notes.
+  llm_description: Free-text notes about the deal.
+  form: llm
+extra:
+  python:
+    source: tools/create_deal.py
