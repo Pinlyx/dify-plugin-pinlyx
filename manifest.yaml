@@ -7,6 +7,9 @@ label:
 description:
   en_US: Search and update contacts, deals and tasks in your Pinlyx CRM from Dify workflows and agents.
 icon: icon.png
+tags:
+  - business
+  - productivity
 resource:
   memory: 268435456
   permission:
